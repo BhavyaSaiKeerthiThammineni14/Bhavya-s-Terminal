@@ -1,13 +1,13 @@
+import os
 import streamlit as st
 import streamlit.components.v1 as components
 
-# Set the page to wide mode to give your HTML room to breathe
+# Define the absolute path to the folder containing your index.html, css, and js
+parent_dir = os.path.dirname(os.path.abspath(__file__))
+
+# Create a custom component that serves the entire directory
+render_my_frontend = components.declare_component("my_frontend", path=parent_dir)
+
+# Render it
 st.set_page_config(layout="wide")
-
-# Read your HTML file
-with open("index.html", "r", encoding="utf-8") as f:
-    html_code = f.read()
-
-# Render the HTML in Streamlit
-# You can adjust height and width as needed
-components.html(html_code, height=800, scrolling=True)
+render_my_frontend()
